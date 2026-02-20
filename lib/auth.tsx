@@ -70,7 +70,8 @@ interface AuthContextValue {
   user: User | null
   loading: boolean
   login: (email: string, password: string) => Promise<{ ok: boolean; error?: string }>
-  register: (data: RegisterData) => Promise<{ ok: boolean; error?: string }>
+  register: (data: RegisterData) => Promise<{ ok: boolean; error?: string; pendingUser?: User }>
+  activateSession: (user: User) => void
   logout: () => void
 }
 
@@ -122,8 +123,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return { ok: false, error: 'An account with that email already exists.' }
     }
 
-    // Create a new dummy user with a low starting score
-    const newUser: User = {
+    // Create a new dummy user with a low starting score.
+    // NOTE: We intentionally do NOT call setUser here — the session is only
+    // activated once the user completes SACCO selection and clicks "Go to Dashboard".
+    const pendingUser: User = {
       id: `usr_${Date.now()}`,
       name: data.name,
       email: data.email,
@@ -137,9 +140,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       memberSince: new Date().toLocaleDateString('en-KE', { month: 'long', year: 'numeric' }),
       kycLevel: 'Pending',
     }
-    setUser(newUser)
-    localStorage.setItem('nawiri_user', JSON.stringify(newUser))
-    return { ok: true }
+    return { ok: true, pendingUser }
+  }
+
+  // Called explicitly after the SACCO onboarding flow is complete.
+  const activateSession = (user: User) => {
+    setUser(user)
+    localStorage.setItem('nawiri_user', JSON.stringify(user))
   }
 
   const logout = () => {
@@ -148,7 +155,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, register, logout }}>
+    <AuthContext.Provider value={{ user, loading, login, register, activateSession, logout }}>
       {children}
     </AuthContext.Provider>
   )
