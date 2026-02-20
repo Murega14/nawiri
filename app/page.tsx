@@ -344,7 +344,7 @@ export default function TujengePage() {
         </div>
 
         {/* Mobile */}
-        <a href="#join" className="md:hidden text-sm font-medium text-forest border border-forest/20 px-4 py-2 rounded-full no-underline">Join</a>
+        <a href="/auth" className="md:hidden text-sm font-medium text-forest border border-forest/20 px-4 py-2 rounded-full no-underline">Join</a>
       </nav>
 
       {/* ══ HERO ══════════════════════════════════════════════ */}
@@ -383,7 +383,7 @@ export default function TujengePage() {
           </p>
 
           <div className="flex items-center gap-4 mb-12" style={{ animation: 'fadeUp 0.6s 0.3s ease both' }}>
-            <a href="#join" className="bg-forest text-white px-9 py-4 rounded-full text-[15px] font-semibold hover:bg-forest-light transition-all hover:-translate-y-0.5 shadow-lg shadow-forest/25 no-underline">
+            <a href="/auth" className="bg-forest text-white px-9 py-4 rounded-full text-[15px] font-semibold hover:bg-forest-light transition-all hover:-translate-y-0.5 shadow-lg shadow-forest/25 no-underline">
               Join a Chama Free
             </a>
             <a href="#how" className="group flex items-center gap-2 text-[15px] font-medium text-forest no-underline">
