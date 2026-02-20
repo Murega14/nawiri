@@ -351,7 +351,7 @@ export default function AuthPage() {
   }
 
   const handleApply = (saccoId: string) => {
-    setAppliedSaccos(prev => new Set([...prev, saccoId]))
+    setAppliedSaccos(prev => new Set(prev).add(saccoId))
   }
 
   const pwdStrength = (p: string) => p.length < 4 ? 0 : p.length < 7 ? 1 : p.length < 10 ? 2 : 3
