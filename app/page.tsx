@@ -338,7 +338,7 @@ export default function TujengePage() {
           <a href="#how"    className="text-sm font-medium text-muted hover:text-forest transition-colors no-underline">How it Works</a>
           <a href="#trust"  className="text-sm font-medium text-muted hover:text-forest transition-colors no-underline">TrustScore</a>
           <a href="#market" className="text-sm font-medium text-muted hover:text-forest transition-colors no-underline">Why Now</a>
-          <a href="#join"   className="text-sm font-semibold text-white bg-forest px-6 py-2.5 rounded-full hover:bg-forest-light transition-all hover:-translate-y-0.5 shadow-md shadow-forest/20 no-underline">
+          <a href="/auth"   className="text-sm font-semibold text-white bg-forest px-6 py-2.5 rounded-full hover:bg-forest-light transition-all hover:-translate-y-0.5 shadow-md shadow-forest/20 no-underline">
             Join a Chama →
           </a>
         </div>
